@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<!--
+  ============================================================
+  ПОРТФОЛИО — ИНСТРУКЦИЯ (удали этот блок, когда закончишь)
+  ============================================================
+  1) ЗАМЕНИ ПЛЕЙСХОЛДЕРЫ. Жёлтое пунктирное подчёркивание в браузере = место
+     для замены. Ищи через Ctrl+F:
+       - ИВАНОВ ИВАН ИВАНОВИЧ   → твоё ФИО (есть в <title> и в шапке)
+       - +7 (___) ___-__-__     → твой телефон (шапка + футер)
+       - email@example.com      → твоя почта (шапка + футер)
+       - github.com/username    → твой GitHub (шапка + футер)
+       - github.com/username/wordpress-lemp-setup   → репозиторий проекта 1
+       - github.com/username/vps-hardening-guide    → репозиторий проекта 2
+       - github.com/username/cloudflare-wp-setup    → репозиторий проекта 3
+       - hh.ru/resume/xxxxx     → ссылка на твоё резюме на hh (шапка + футер)
+       - [НАЗВАНИЕ КОЛЛЕДЖА]    → где учился
+       - г. Пушкино             → если хочешь показать другой город
+     После замены текста убери у ссылок/спанов class="ph" (Ctrl+F: class="ph"),
+     чтобы исчезло жёлтое подчёркивание.
+  2) КНОПКА «РЕЗЮМЕ PDF»: положи файл resume.pdf рядом с этим файлом —
+     кнопка в шапке начнёт работать сама.
+  3) БЕСПЛАТНЫЙ ПОСТОЯННЫЙ САЙТ ЗА 10 МИНУТ (GitHub Pages):
+       a) создай на GitHub публичный репозиторий с именем username.github.io
+          (username = твой ник на GitHub);
+       b) переименуй этот файл в index.html и загрузи в корень репозитория
+          (плюс resume.pdf, если хочешь кнопку);
+       c) через 1–2 минуты сайт откроется по адресу https://username.github.io
+       d) эту ссылку вставляй в резюме на hh и в отклики.
+  ============================================================
+-->
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Петров Александр Алексеевич — Junior DevOps / Информационная безопасность</title>
+<meta name="description" content="Портфолио: Linux, LEMP, hardening, Cloudflare, OWASP Top 10. Ищу позицию Junior DevOps / Sysadmin / SOC Analyst L1.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23070b12'/%3E%3Ctext x='10' y='42' font-family='monospace' font-size='30' fill='%2300ff9d'%3E%26gt;_%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#070b12; --panel:#0c1320; --panel2:#0f1828;
+  --line:#1d2b40; --line2:#28405f;
+  --text:#cfdded; --mut:#8ba1b8; --dim:#5e7288;
+  --grn:#00ff9d; --cyn:#3cc9ff; --yel:#ffd166; --red:#ff5c7a;
+  --mono:'JetBrains Mono','Cascadia Code','Fira Code',Consolas,'Courier New',monospace;
+  --sans:'Inter','Segoe UI',system-ui,-apple-system,Arial,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{
+  background:var(--bg);color:var(--text);font-family:var(--sans);
+  font-size:15.5px;line-height:1.65;overflow-x:hidden;
+}
+/* сетка на фоне */
+body::before{
+  content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:
+    linear-gradient(rgba(60,201,255,.045) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(60,201,255,.045) 1px,transparent 1px);
+  background-size:34px 34px;
+}
+/* сканлайны */
+body::after{
+  content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.35;
+  background:repeating-linear-gradient(0deg,rgba(0,0,0,.22) 0 1px,transparent 1px 4px);
+}
+main,header.hero,nav{position:relative;z-index:1}
+.wrap{max-width:1060px;margin:0 auto;padding:0 22px}
+a{color:var(--cyn);text-decoration:none}
+a:hover{text-decoration:underline}
+.ph{border-bottom:1px dashed var(--yel);cursor:help}
+/* ===== НАВИГАЦИЯ ===== */
+nav{
+  position:sticky;top:0;z-index:50;
+  background:rgba(7,11,18,.82);backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+nav .wrap{display:flex;align-items:center;gap:6px;height:52px}
+.logo{font-family:var(--mono);font-size:13px;color:var(--grn);margin-right:auto;white-space:nowrap}
+.logo b{color:var(--text)}
+nav .nl{
+  font-family:var(--mono);font-size:12.5px;color:var(--mut);
+  padding:6px 10px;border-radius:6px;white-space:nowrap;
+}
+nav .nl:hover{color:var(--text);text-decoration:none;background:rgba(60,201,255,.08)}
+nav .nl.active{color:var(--grn)}
+/* ===== ШАПКА / ТЕРМИНАЛ ===== */
+header.hero{padding:64px 0 56px}
+.term{
+  max-width:780px;margin:0 auto;background:var(--panel);
+  border:1px solid var(--line2);border-radius:12px;overflow:hidden;
+  box-shadow:0 0 40px rgba(0,255,157,.07),0 18px 50px rgba(0,0,0,.5);
+}
+.term-bar{
+  display:flex;align-items:center;gap:8px;padding:11px 16px;
+  background:var(--panel2);border-bottom:1px solid var(--line);
+  font-family:var(--mono);font-size:12px;color:var(--dim);
+}
+.dot{width:11px;height:11px;border-radius:50%}
+.d1{background:#ff5f56}.d2{background:#ffbd2e}.d3{background:#27c93f}
+.term-bar span{margin-left:8px}
+.term-body{padding:24px 26px 26px;font-family:var(--mono);font-size:14px}
+.tl{margin-bottom:13px}
+.t-p{color:var(--grn)}
+.t-c{color:var(--cyn)}
+.t-o{color:var(--text)}
+.t-dim{color:var(--dim)}
+.t-name{
+  font-size:29px;font-weight:700;color:#fff;letter-spacing:.02em;
+  text-shadow:0 0 22px rgba(0,255,157,.45);margin:2px 0 6px;
+}
+.t-role{color:var(--grn);font-size:15.5px}
+.typed{
+  color:var(--yel);
+}
+.typed::after{
+  content:"█";margin-left:2px;animation:blink 1s steps(1) infinite;color:var(--yel);
+}
+@keyframes blink{50%{opacity:0}}
+.status{
+  display:inline-flex;align-items:center;gap:8px;margin-top:6px;
+  font-size:12.5px;color:var(--grn);border:1px solid rgba(0,255,157,.35);
+  background:rgba(0,255,157,.07);padding:5px 12px;border-radius:99px;
+}
+.status i{width:8px;height:8px;border-radius:50%;background:var(--grn);animation:pulse 1.6s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(0,255,157,.5)}70%{box-shadow:0 0 0 7px rgba(0,255,157,0)}100%{box-shadow:0 0 0 0 rgba(0,255,157,0)}}
+/* контакты под терминалом */
+.contacts{max-width:780px;margin:22px auto 0;display:flex;flex-wrap:wrap;gap:10px}
+.chip{
+  font-family:var(--mono);font-size:12.5px;color:var(--mut);
+  border:1px solid var(--line2);border-radius:8px;padding:8px 13px;
+  background:var(--panel);display:inline-flex;gap:7px;align-items:center;
+  transition:border-color .2s,color .2s;
+}
+a.chip:hover{color:var(--grn);border-color:var(--grn);text-decoration:none}
+.chip .k{color:var(--cyn)}
+.btns{max-width:780px;margin:20px auto 0;display:flex;gap:12px;flex-wrap:wrap}
+.btn{
+  font-family:var(--mono);font-size:13px;padding:11px 20px;border-radius:8px;
+  border:1px solid;cursor:pointer;transition:.2s;display:inline-block;
+}
+.btn:hover{text-decoration:none;transform:translateY(-1px)}
+.btn-g{color:var(--grn);border-color:var(--grn);background:rgba(0,255,157,.09)}
+.btn-g:hover{background:rgba(0,255,157,.18);box-shadow:0 0 18px rgba(0,255,157,.25)}
+.btn-c{color:var(--cyn);border-color:var(--cyn);background:rgba(60,201,255,.07)}
+.btn-c:hover{background:rgba(60,201,255,.15);box-shadow:0 0 18px rgba(60,201,255,.2)}
+/* ===== СЕКЦИИ ===== */
+section{padding:64px 0;border-top:1px solid var(--line)}
+.sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:30px}
+.sec-num{font-family:var(--mono);color:var(--grn);font-size:14px;white-space:nowrap}
+.sec-title{font-family:var(--mono);font-size:21px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#fff;white-space:nowrap}
+.sec-line{flex:1;height:1px;background:linear-gradient(90deg,var(--line2),transparent)}
+.about-grid{display:grid;grid-template-columns:1.5fr 1fr;gap:22px;align-items:start}
+.about-text p{margin-bottom:14px;color:var(--text)}
+.about-text p:last-child{margin-bottom:0}
+.facts{
+  background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:18px 20px;
+}
+.facts h3{font-family:var(--mono);font-size:12px;color:var(--cyn);letter-spacing:.14em;margin-bottom:12px;text-transform:uppercase}
+.facts ul{list-style:none}
+.facts li{
+  font-family:var(--mono);font-size:13px;color:var(--mut);padding:7px 0;
+  border-bottom:1px dashed var(--line);display:flex;gap:9px;
+}
+.facts li:last-child{border-bottom:none}
+.facts li b{color:var(--text);font-weight:600}
+.facts li::before{content:">";color:var(--grn)}
+.edu{
+  margin-top:22px;background:var(--panel);border:1px solid var(--line);
+  border-radius:10px;padding:20px 24px;
+}
+.edu h3{font-family:var(--mono);font-size:14px;color:#fff;margin-bottom:8px}
+.edu .ed-meta{font-family:var(--mono);font-size:13px;color:var(--grn);margin-bottom:8px}
+.edu p{color:var(--mut);font-size:14px}
+/* ===== НАВЫКИ 50/50 ===== */
+.skills2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.sk{
+  background:var(--panel);border:1px solid var(--line);border-radius:10px;
+  padding:20px 22px;border-top:2px solid;
+}
+.sk.devops{border-top-color:var(--cyn)}
+.sk.sec{border-top-color:var(--grn)}
+.sk h3{
+  font-family:var(--mono);font-size:13px;letter-spacing:.13em;margin-bottom:15px;text-transform:uppercase;
+}
+.sk.devops h3{color:var(--cyn)}
+.sk.sec h3{color:var(--grn)}
+.sk ul{list-style:none}
+.sk li{
+  font-size:13.5px;color:var(--mut);padding:8px 0;border-bottom:1px dashed var(--line);
+}
+.sk li:last-child{border-bottom:none}
+.sk li b{color:var(--text);font-weight:600}
+.sk li::before{content:"[+] ";font-family:var(--mono);font-weight:700}
+.sk.devops li::before{color:var(--cyn)}
+.sk.sec li::before{color:var(--grn)}
+.tags{margin-top:20px;display:grid;gap:16px}
+.tagrow h3{
+  font-family:var(--mono);font-size:12px;letter-spacing:.14em;color:var(--dim);
+  text-transform:uppercase;margin-bottom:10px;
+}
+.tset{display:flex;flex-wrap:wrap;gap:8px}
+.tag{
+  font-family:var(--mono);font-size:12px;color:var(--mut);
+  border:1px solid var(--line2);border-radius:6px;padding:5px 11px;background:var(--panel);
+  transition:.2s;
+}
+.tag:hover{color:var(--grn);border-color:var(--grn)}
+/* ===== ПРОЕКТЫ ===== */
+.proj-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.proj{
+  background:var(--panel);border:1px solid var(--line);border-radius:10px;
+  padding:20px 22px;position:relative;transition:.25s;
+}
+.proj:hover{
+  border-color:var(--line2);transform:translateY(-3px);
+  box-shadow:0 12px 34px rgba(0,0,0,.45),0 0 22px rgba(60,201,255,.06);
+}
+.proj-top{display:flex;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap}
+.pid{font-family:var(--mono);font-size:11.5px;color:var(--dim)}
+.pcat{
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;padding:3px 9px;
+  border-radius:5px;border:1px solid;
+}
+.pc-dev{color:var(--cyn);border-color:rgba(60,201,255,.45);background:rgba(60,201,255,.08)}
+.pc-sec{color:var(--grn);border-color:rgba(0,255,157,.45);background:rgba(0,255,157,.08)}
+.pc-net{color:var(--pur);border-color:rgba(177,140,255,.45);background:rgba(177,140,255,.08)}
+.pstatus{
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;padding:3px 9px;
+  border-radius:5px;color:var(--yel);border:1px solid rgba(255,209,102,.5);background:rgba(255,209,102,.08);
+}
+.proj h3{font-size:16.5px;color:#fff;margin-bottom:10px;font-weight:600}
+.pstack{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:12px}
+.pstack span{
+  font-family:var(--mono);font-size:11px;color:var(--mut);
+  background:var(--panel2);border:1px solid var(--line);border-radius:5px;padding:3px 9px;
+}
+.proj ul{list-style:none;margin-bottom:12px}
+.proj li{font-size:13.5px;color:var(--mut);padding:4px 0 4px 16px;position:relative}
+.proj li::before{content:">";position:absolute;left:0;color:var(--grn);font-family:var(--mono)}
+.result{
+  border-left:3px solid var(--grn);background:rgba(0,255,157,.06);
+  padding:9px 13px;font-size:13px;color:var(--text);border-radius:0 6px 6px 0;
+}
+.result b{color:var(--grn);font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;display:block;margin-bottom:2px}
+.repo{
+  display:inline-block;margin-top:12px;font-family:var(--mono);font-size:12.5px;color:var(--cyn);
+}
+.repo::after{content:" \2197";}
+.repo:hover{color:var(--grn)}
+/* ===== СЕРТИФИКАТЫ ===== */
+.certs{display:grid;gap:12px;max-width:780px}
+.cert{
+  display:flex;align-items:center;gap:14px;background:var(--panel);
+  border:1px solid var(--line);border-radius:9px;padding:14px 18px;
+}
+.cert .mark{font-family:var(--mono);font-weight:700;font-size:15px;width:34px;height:34px;flex:none;
+  display:flex;align-items:center;justify-content:center;border-radius:7px;border:1px solid}
+.cert.doing .mark{color:var(--yel);border-color:rgba(255,209,102,.5);background:rgba(255,209,102,.08)}
+.cert.plan .mark{color:var(--dim);border-color:var(--line2);background:var(--panel2)}
+.cert .nm{font-size:14.5px;color:var(--text);font-weight:500}
+.cert .sub{font-size:12.5px;color:var(--dim);font-family:var(--mono)}
+.cert .st{
+  margin-left:auto;font-family:var(--mono);font-size:11px;letter-spacing:.08em;
+  padding:4px 11px;border-radius:99px;border:1px solid;white-space:nowrap;
+}
+.cert.doing .st{color:var(--yel);border-color:rgba(255,209,102,.5)}
+.cert.plan .st{color:var(--dim);border-color:var(--line2)}
+/* ===== ДОПОЛНИТЕЛЬНО ===== */
+.extra3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px}
+.ex{
+  background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:18px 20px;
+}
+.ex h3{font-family:var(--mono);font-size:12px;letter-spacing:.13em;color:var(--cyn);margin-bottom:12px;text-transform:uppercase}
+.ex.ready h3{color:var(--grn)}
+.ex p{font-size:13.5px;color:var(--mut)}
+.ex.ready{border-color:rgba(0,255,157,.4)}
+.ex.ready p{color:var(--text)}
+/* ===== ФУТЕР ===== */
+footer{border-top:1px solid var(--line);padding:56px 0 44px}
+.ct-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:24px 0 30px}
+.ct{
+  background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:15px 17px;
+  font-family:var(--mono);font-size:12.5px;color:var(--mut);transition:.2s;display:block;
+}
+a.ct:hover{border-color:var(--grn);color:var(--grn);text-decoration:none}
+.ct .k{font-size:10.5px;letter-spacing:.13em;color:var(--dim);display:block;margin-bottom:6px;text-transform:uppercase}
+.ct .v{color:var(--text);word-break:break-all}
+a.ct .v{color:var(--cyn)}
+.foot-note{font-family:var(--mono);font-size:12px;color:var(--dim);display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
+/* появление при скролле */
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+.reveal.on{opacity:1;transform:none}
+/* ===== АДАПТИВ ===== */
+@media (max-width:900px){
+  .about-grid,.skills2,.proj-grid,.extra3{grid-template-columns:1fr}
+  .ct-grid{grid-template-columns:1fr 1fr}
+  .sec-title{font-size:17px;letter-spacing:.1em}
+  nav .nl{padding:6px 7px;font-size:11.5px}
+  .t-name{font-size:24px}
+  section{padding:48px 0}
+}
+@media (max-width:560px){
+  .ct-grid{grid-template-columns:1fr}
+  nav .wrap{overflow-x:auto}
+  .term-body{padding:18px 16px}
+  .hero{padding:40px 0 36px}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="logo"><b>bladlvde</b>@portfolio:~$</div>
+    <a class="nl" href="#about">о себе</a>
+    <a class="nl" href="#skills">навыки</a>
+    <a class="nl" href="#projects">проекты</a>
+    <a class="nl" href="#dop">дополнительно</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="term reveal">
+      <div class="term-bar">
+        <div class="dot d1"></div><div class="dot d2"></div><div class="dot d3"></div>
+        <span>bladlvde@portfolio: ~ — bash</span>
+      </div>
+      <div class="term-body">
+        <div class="tl"><span class="t-p">$</span> <span class="t-c">whoami</span></div>
+        <div class="tl t-name">Петров Александр Алексеевич</div>
+        <div class="tl"><span class="t-p">$</span> <span class="t-c">cat</span> <span class="t-o">position.txt</span></div>
+        <div class="tl t-role">Junior DevOps / Инженер по информационной безопасности</div>
+        <div class="tl"><span class="t-p">$</span> <span class="t-c">./career.sh --target=</span><span class="typed" id="typed"></span></div>
+        <div class="tl"><span class="t-p">$</span> <span class="t-c">curl</span> <span class="t-o">-I location</span> <span class="t-p">|</span> <span class="t-c">grep</span> <span class="t-o">city</span></div>
+        <div class="tl t-o t-dim">Россия, <span title="замени при необходимости">г. Пушкино (Московская обл.)</span> — офис / удалёнка / гибрид</div>
+        <div class="status"><i></i>OPEN TO WORK — готов к предложениям</div>
+      </div>
+    </div>
+
+    <div class="contacts reveal">
+      <a class="chip" href="tel:+89669766257"><span class="k">tel:</span> <span title="замени на свой телефон">+7 (966) 976-62-57</span></a>
+      <a class="chip" href="mailto:ckakyh007@gmail.com" data-copy="email@example.com"><span class="k">mail:</span> <span title="замени на свою почту">ckakyh007@gmail.com</span></a>
+      <a class="chip" href="https://github.com/bladlvde" target="_blank" rel="noopener"><span class="k">github:</span> <spantitle="замени на свой ник">github.com/bladlvde</span></a>
+      <a class="chip" href="https://hh.ru/resume/xxxxx" target="_blank" rel="noopener"><span class="k">hh:</span> <span title="замени на ссылку своего резюме">hh.ru/resume/xxxxx</span></a>
+    </div>
+
+    <div class="btns reveal">
+      <a class="btn btn-g" href="#projects">&gt; Смотреть проекты</a>
+      <a class="btn btn-c" href="resume.pdf" title="Положи resume.pdf рядом с этим файлом">&gt; Резюме PDF</a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- ===== 01 О СЕБЕ ===== -->
+<section id="about">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-num">// 01</span><h2 class="sec-title">О себе</h2><span class="sec-line"></span>
+    </div>
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <p>Выпускник направления «Информационные системы» (4 года колледжа). Увлечён администрированием Linux и веб-безопасностью. Люблю разбираться, как всё устроено «под капотом» — и доводить настройки до конца, а не до «как-нибудь заработало».</p>
+        <p>Развернул и настроил production-ready веб-инфраструктуру с нуля: <b>Nginx + PHP-FPM + MariaDB + WordPress</b> — с базовым hardening и защитой через Cloudflare. Понимаю, как работает веб от HTTP-заголовков до Unix-сокетов PHP-FPM: почему появляется 502, куда смотреть в логах и что закрыть в первую очередь.</p>
+        <p>Параллельно качаю направление ИБ: OWASP Top 10, PortSwigger Web Security Academy, WPScan, TryHackMe. Ищу позицию <b>Junior DevOps / Sysadmin / SOC Analyst L1</b>, где смогу расти и приносить пользу с первого месяца.</p>
+      </div>
+      <div class="facts reveal">
+        <h3>Паспорт кандидата</h3>
+        <ul>
+          <li><b>4 года</b> — колледж, «Информационные системы»</li>
+          <li><b>5 проектов</b> — развёрнуты и задокументированы</li>
+          <li><b>LEMP-стек</b> — в работе 24/7 на VPS</li>
+          <li><b>OWASP Top 10</b> — знаю и применяю</li>
+          <li><b>Цель</b> — SOC L1 / Junior DevOps</li>
+        </ul>
+      </div>
+    </div>
+    <div class="edu reveal">
+      <h3>Образование</h3>
+      <div class="ed-meta">СПО · специальность 09.02.07 «Информационные системы и программирование» · 2022–2026</div>
+      <p><span title="подставь название своего учебного заведения">[РГУТИС]</span>. Ключевые дисциплины: операционные системы, базы данных, сети, программирование, защита информации.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 02 НАВЫКИ ===== -->
+<section id="skills">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-num">// 02</span><h2 class="sec-title">Навыки</h2><span class="sec-line"></span>
+    </div>
+    <div class="skills2">
+      <div class="sk devops reveal">
+        <h3>DevOps / Инфраструктура</h3>
+        <ul>
+          <li><b>Linux (Ubuntu/Debian):</b> CLI, systemctl, apt, управление процессами</li>
+          <li><b>Пользователи и права:</b> chown, chmod, /etc/passwd, /etc/group</li>
+          <li><b>SSH:</b> ключи, конфигурация sshd_config</li>
+          <li><b>Nginx:</b> server-блоки, location, проксирование, security headers</li>
+          <li><b>PHP-FPM:</b> настройка пулов, Unix-сокеты, интеграция с Nginx</li>
+          <li><b>MariaDB / MySQL:</b> базы и пользователи, GRANT, SQL-запросы</li>
+          <li><b>WordPress:</b> wp-config.php, плагины, разбор 5xx и редиректов</li>
+          <li><b>Docker (базово):</b> контейнеры, docker-compose</li>
+          <li><b>Git / GitHub:</b> ветки, коммиты, документация репозиториев</li>
+          <li><b>VirtualBox:</b> развёртывание ВМ, сетевые режимы</li>
+          <li><b>Bash:</b> скрипты автоматизации (базово)</li>
+        </ul>
+      </div>
+      <div class="sk sec reveal">
+        <h3>Информационная безопасность</h3>
+        <ul>
+          <li><b>HTTP security headers:</b> X-Frame-Options, X-Content-Type-Options, HSTS</li>
+          <li><b>Firewall UFW:</b> закрытие всего, кроме 22/80/443</li>
+          <li><b>Fail2ban:</b> защита SSH и wp-login от брутфорса</li>
+          <li><b>SSH hardening:</b> запрет root-входа, только ключи</li>
+          <li><b>Cloudflare:</b> SSL/TLS, Anti-DDoS, Bot Fight Mode, скрытие IP</li>
+          <li><b>Аудит WordPress:</b> WPScan, Wordfence, поиск XSS / SQLi</li>
+          <li><b>OWASP Top 10:</b> понимание и практика на стенде DVWA</li>
+          <li><b>PortSwigger Academy:</b> прохожу сейчас</li>
+          <li><b>SSL/TLS, HTTPS:</b> сертификаты, Flexible → Full, HSTS</li>
+          <li><b>TryHackMe:</b> трек Pre-Security в процессе</li>
+        </ul>
+      </div>
+    </div>
+    <div class="tags reveal">
+      <div class="tagrow">
+        <h3>Сети</h3>
+        <div class="tset">
+          <span class="tag">OSI / TCP-IP</span><span class="tag">IP-адресация</span><span class="tag">NAT</span>
+          <span class="tag">маршрутизация</span><span class="tag">DHCP / DNS</span>
+          <span class="tag">netstat / ss</span><span class="tag">ping / traceroute</span>
+          <span class="tag">arp-scan</span><span class="tag">curl -I</span>
+          <span class="tag">VirtualBox: NAT / Bridged / Host-Only</span>
+        </div>
+      </div>
+      <div class="tagrow">
+        <h3>Языки</h3>
+        <div class="tset">
+          <span class="tag">Русский — родной</span>
+          <span class="tag">Английский — B1 (техническая документация)</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 03 ПРОЕКТЫ ===== -->
+<section id="projects">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-num">// 03</span><h2 class="sec-title">Проекты</h2><span class="sec-line"></span>
+    </div>
+    <div class="proj-grid">
+
+      <div class="proj reveal">
+        <div class="proj-top"><span class="pid">P-01</span><span class="pcat pc-dev">DEVOPS</span></div>
+        <h3>Production-ready веб-сервер для WordPress</h3>
+        <div class="pstack"><span>Ubuntu Server</span><span>Nginx</span><span>PHP-FPM 8.5</span><span>MariaDB 11.8</span><span>WordPress</span></div>
+        <ul>
+          <li>Развернул LEMP-стек с нуля на виртуальной машине</li>
+          <li>Настроил Nginx: server-блоки, PHP через Unix-сокет, отдача статики</li>
+          <li>MariaDB: изолированная база и пользователь с ограниченными правами</li>
+          <li>Подключил WordPress, настроил wp-config.php</li>
+          <li>Добавил security-заголовки (X-Frame-Options, nosniff, X-XSS-Protection)</li>
+          <li>Закрыл доступ к скрытым файлам (.env, .git, .htaccess)</li>
+          <li>Исправил 502/403/301 через анализ логов и конфигов</li>
+        </ul>
+        <div class="result"><b>РЕЗУЛЬТАТ</b>Полностью рабочая CMS-инфраструктура, готовая к продакшену.</div>
+      </div>
+
+      <div class="proj reveal">
+        <div class="proj-top"><span class="pid">P-02</span><span class="pcat pc-sec">SECURITY</span></div>
+        <h3>Hardening веб-сервера</h3>
+        <div class="pstack"><span>UFW</span><span>Fail2ban</span><span>SSH</span><span>Nginx</span></div>
+        <ul>
+          <li>Настроил UFW: разрешены только порты 22, 80, 443</li>
+          <li>Fail2ban: защита SSH и страницы входа WordPress</li>
+          <li>Отключил root-вход по SSH, вход только по ключам</li>
+          <li>Ограничил права на файлы WordPress (www-data, 755/644)</li>
+          <li>Настроил автоматические обновления безопасности</li>
+        </ul>
+        <div class="result"><b>РЕЗУЛЬТАТ</b>Снижен риск брутфорса, RCE и несанкционированного доступа.</div>
+      </div>
+
+      <div class="proj reveal">
+        <div class="proj-top"><span class="pid">P-03</span><span class="pcat pc-sec">SECURITY</span><span class="pcat pc-dev">DEVOPS</span></div>
+        <h3>Cloudflare + защита от DDoS</h3>
+        <div class="pstack"><span>Cloudflare (Free)</span><span>DNS</span><span>SSL/TLS</span></div>
+        <ul>
+          <li>Привязал домен к Cloudflare, настроил NS-записи</li>
+          <li>A/CNAME с проксированием (Proxied)</li>
+          <li>SSL/TLS: Flexible → Full, Always Use HTTPS</li>
+          <li>Cache Rules: кеш статики на месяц, обход кеша для PHP</li>
+          <li>Bot Fight Mode и Security Level Medium</li>
+          <li>Скрыл реальный IP сервера за Cloudflare</li>
+        </ul>
+        <div class="result"><b>РЕЗУЛЬТАТ</b>Сайт защищён от DDoS, ботов и брутфорса, ускорен через CDN.</div>
+      </div>
+
+      <div class="proj reveal">
+        <div class="proj-top"><span class="pid">P-04</span><span class="pcat pc-net">NETWORK</span></div>
+        <h3>Сетевая лаборатория на VirtualBox</h3>
+        <div class="pstack"><span>VirtualBox</span><span>Ubuntu Server</span><span>NAT Network</span><span>Host-Only</span></div>
+        <ul>
+          <li>Развернул несколько виртуальных машин Ubuntu Server</li>
+          <li>NAT Network: связь между ВМ и выход в интернет</li>
+          <li>Host-Only адаптер: связь ВМ с хост-машиной</li>
+          <li>Диагностика сети: arp-scan, netstat, ip a</li>
+          <li>Настроил маршрутизацию между сетями</li>
+        </ul>
+        <div class="result"><b>РЕЗУЛЬТАТ</b>Локальная лаборатория для тестирования конфигураций и ИБ-сценариев.</div>
+      </div>
+
+      <div class="proj reveal">
+        <div class="proj-top"><span class="pid">P-05</span><span class="pcat pc-sec">SECURITY</span><span class="pstatus">IN PROGRESS</span></div>
+        <h3>Разведка и аудит WordPress</h3>
+        <div class="pstack"><span>WPScan</span><span>Wordfence</span><span>DVWA</span><span>OWASP Top 10</span></div>
+        <ul>
+          <li>Сканирую собственный WordPress на уязвимости через WPScan</li>
+          <li>Тестирую XSS и SQLi на учебном стенде DVWA</li>
+          <li>Практикуюсь на PortSwigger Web Security Academy</li>
+          <li>Изучаю OWASP Top 10: методы эксплуатации и защиты</li>
+        </ul>
+        <div class="result"><b>РЕЗУЛЬТАТ</b>Формирую практические навыки junior-пентестера.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ===== 05 ДОПОЛНИТЕЛЬНО ===== -->
+<section id="dop">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-num">// 05</span><h2 class="sec-title">Дополнительно</h2><span class="sec-line"></span>
+    </div>
+    <div class="extra3">
+      <div class="ex reveal">
+        <h3>Стек и инструменты</h3>
+        <p>Ubuntu, Debian, Nginx, Apache, PHP-FPM, MariaDB, MySQL, WordPress, Cloudflare, VirtualBox, Docker, Git, UFW, fail2ban, WPScan, Wordfence.</p>
+      </div>
+      <div class="ex reveal">
+        <h3>Принципы и протоколы</h3>
+        <p>OWASP Top 10, HTTP/HTTPS, DNS, TCP/IP, SSH, Unix permissions, ACL. Понимаю, как это работает внутри — и как это ломают.</p>
+      </div>
+      <div class="ex ready reveal">
+        <h3>Готов к</h3>
+        <p>Ночным дежурствам (SOC L1), работе в офисе и удалённо. Вникаю в задачи быстро, документирую решения, довожу до результата.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+
+<script>
+// печатающаяся строка в терминале
+(function(){
+  var el=document.getElementById('typed');
+  var words=['"SOC Analyst L1"','"Junior Sysadmin"','"Junior DevOps"','"стажёр-пентестер"'];
+  var wi=0,ci=0,del=false;
+  function tick(){
+    var w=words[wi];
+    el.textContent=w.slice(0,ci);
+    if(!del){ci++;if(ci>w.length){del=true;return setTimeout(tick,1600);}}
+    else{ci--;if(ci===0){del=false;wi=(wi+1)%words.length;}}
+    setTimeout(tick,del?32:70);
+  }
+  tick();
+})();
+// копирование почты по клику
+document.querySelectorAll('[data-copy]').forEach(function(a){
+  a.addEventListener('click',function(e){
+    if(navigator.clipboard){e.preventDefault();navigator.clipboard.writeText(a.getAttribute('data-copy')).catch(function(){});}
+  });
+});
+// появление блоков при скролле
+var io=new IntersectionObserver(function(es){
+  es.forEach(function(en){if(en.isIntersecting){en.target.classList.add('on');io.unobserve(en.target);}});
+},{threshold:.08});
+document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
+// подсветка активного пункта меню
+var secs=document.querySelectorAll('section[id],footer[id]');
+var links=document.querySelectorAll('nav .nl');
+var io2=new IntersectionObserver(function(es){
+  es.forEach(function(en){
+    if(en.isIntersecting){
+      links.forEach(function(l){l.classList.toggle('active',l.getAttribute('href')==='#'+en.target.id);});
+    }
+  });
+},{rootMargin:'-45% 0px -50% 0px'});
+secs.forEach(function(s){io2.observe(s);});
+// год в футере
+document.getElementById('year').textContent=new Date().getFullYear();
+</script>
+</body>
+</html>
